@@ -32,3 +32,7 @@ Resources:
 Notes:
 
 The Google Sheet ID is stored as an environment variable within env.js.  Rename env-sample.js to env.js for the code to work and to make sure git ignores your Sheet's ID for security purposes.  Why do you want to keep this info secure?  [You can end up with a very expensive lesson](https://www.quora.com/My-AWS-account-was-hacked-and-I-have-a-50-000-bill-how-can-I-reduce-the-amount-I-need-to-pay).
+
+GitHub setup
+
+https://help.github.com/articles/connecting-to-github-with-ssh/
