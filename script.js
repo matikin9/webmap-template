@@ -1,5 +1,9 @@
 /*global $*/
 /*global L*/
+$.getScript("env.js", function() {
+    console.log("environment variables loaded.");
+    populateMap();
+});
 
 /*
  * Initialize Map
@@ -27,3 +31,20 @@ $.getJSON('../front/toptenv1.json', function(data) {
     });
 });
 */
+
+function populateMap() {
+    $.getJSON("https://spreadsheets.google.com/feeds/list/" + SHEET_ID + "/1/public/values?alt=json", function(sheet) {
+        var data = sheet.feed.entry;
+
+        $.each( data, function(key, val) {
+            var $popup = $("<div>", {
+                "id": key
+            });
+            $popup.append("<p>" + val.gsx$incidenttype.$t + "<br>" + val.gsx$approxlatitude.$t + ", " + val.gsx$approxlongitude.$t + "</p>");
+            
+            var m = L.marker([val.gsx$approxlatitude.$t, val.gsx$approxlongitude.$t])
+                .bindPopup($popup[0])
+                .addTo(mymap);
+        });
+    });
+}
